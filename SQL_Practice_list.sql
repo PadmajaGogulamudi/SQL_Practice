@@ -67,8 +67,47 @@ select empno,ename,sal,round(sal/30,2) as daily_salary,sal*12 as annual_sal
  select * from emp where ename like '%ll%'  ;
  
  #List the emps those who joined in 80’s.
+ select * from emp where year(hiredate) between 1980 and 1989;
  
+ #List the emps who does not belong to Deptno 20.
+ select * from emp where deptno!=20;
+ select * from emp where deptno <> 20;
  
+ #List all the emps except ‘PRESIDENT’ & ‘MGR” in asc order of Salaries.
+ select * from emp where job not in('PRESIDENT','Manager') order by sal;
  
+ #List all the emps who joined before or after 1981.
+ select * from emp where year(hiredate) <> 1981;
  
+ #List the emps whose Empno not starting with digit78.
+ select * from emp where cast(empno as char) not like '78%';
+ 
+ #List the emps who are working under ‘MGR’.
+ select * from emp where mgr in (select empno from emp where job='manager');
+ 
+ SELECT e.empno, e.ename, e.job, e.mgr
+FROM emp e
+WHERE e.mgr IN (
+    SELECT empno FROM emp WHERE job = 'MANAGER'
+);
+
+#List the emps who joined in any year but not belongs to the month of March.
+select * from emp where month(hiredate)!=02;
+
+#List all the Clerks of Deptno 20.
+select * from emp where job='Clerk' and deptno=20;
+ 
+#List the emps of Deptno 30 or 10 joined in the year 1981.
+select * from emp where deptno in (30,10) and year(hiredate)!=1981;
+
+#Display the details of SMITH.
+select * from emp where ename='SMITH';
+
+#Display the location of SMITH
+select d.loc from emp e inner join dept d on e.deptno=d.deptno where ename='SMITH'; 
+
+/*List the total information of EMP table along with DNAME and Loc of all the
+emps Working Under ‘ACCOUNTING’ & ‘RESEARCH’ in the asc Deptno*/
+
+
  
