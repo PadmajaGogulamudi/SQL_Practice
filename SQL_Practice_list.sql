@@ -108,6 +108,30 @@ select d.loc from emp e inner join dept d on e.deptno=d.deptno where ename='SMIT
 
 /*List the total information of EMP table along with DNAME and Loc of all the
 emps Working Under ‘ACCOUNTING’ & ‘RESEARCH’ in the asc Deptno*/
+select distinct job from emp;
+select ename,d.dname,loc 
+from emp  e join dept d 
+on e.deptno=d.deptno 
+where e.mgr in(select empno from emp where job in ('SALESMAN','ANALYST')) order by e.deptno;
 
+/*List the Empno, Ename, Sal, Dname of all the ‘MGRS’ and ‘ANALYST’
+working in New York, Dallas with an exp more than 7 years without receiving the
+Comm asc order of Loc.*/
 
- 
+/*Display the Empno, Ename, Sal, Dname, Loc, Deptno, Job of all emps working at
+'CHICAGO' or working for ACCOUNTING dept with Ann Sal>28000, but the Sal
+should not be=3000 or 2800 who doesn’t belongs to the Mgr and whose no is
+having a digit ‘7’ or ‘8’ in 3rd position in the asc order of Deptno and desc order
+of job.*/
+select e.empno,e.ename,e.sal,d.dname,d.loc,e.deptno,e.job 
+from emp e inner join dept d on e.deptno=d.deptno
+ where (d.loc='CHICAGO' or e.job='CLERK') and sal*12 >120 and sal not in (3000,2800) 
+ and e.mgr is null and substring(lpad(empno,4,0),3,1) in (7,8) ;
+ create table paddu
+ (name_ varchar(30));
+ insert into paddu values("hello");
+ select * from paddu;
+truncate table paddu;
+drop table paddu;
+#delete will not work without where clause
+delete from paddu;
