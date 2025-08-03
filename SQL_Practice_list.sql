@@ -127,6 +127,7 @@ select e.empno,e.ename,e.sal,d.dname,d.loc,e.deptno,e.job
 from emp e inner join dept d on e.deptno=d.deptno
  where (d.loc='CHICAGO' or e.job='CLERK') and sal*12 >120 and sal not in (3000,2800) 
  and e.mgr is null and substring(lpad(empno,4,0),3,1) in (7,8) ;
+ 
  create table paddu
  (name_ varchar(30));
  insert into paddu values("hello");
@@ -135,3 +136,5 @@ truncate table paddu;
 drop table paddu;
 #delete will not work without where clause
 delete from paddu;
+
+
