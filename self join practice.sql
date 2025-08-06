@@ -113,13 +113,32 @@ WHERE JOB IN(
 		GROUP BY JOB
 		HAVING COUNT(*)>1
         );
-SELECT DISTINCT E1.ENAME AS EMPLOYEE,E1.JOB
+SELECT DISTINCT E1.ENAME AS EMPLOYEE,E1.JOB,count(*) as empcount
 FROM EMP E1 JOIN EMP E2
 ON E1.JOB=E2.JOB
-WHERE E1.EMPNO<>E2.EMPNO
+WHERE E1.EMPNO != E2.EMPNO
+group by E1.JOB,e1.ename
+having empcount>3
 ORDER BY E1.JOB;
-
+use sampleone;
 # Show employees who earn exactly the same salary as someone else.
+SELECT E1.ENAME AS EMPLOYEE,E1.SAL AS SALARY
+FROM EMP E1 JOIN EMP E2
+ON E1.SAL=E2.SAL
+WHERE E1.EMPNO<>E2.EMPNO;  
+
+#List pairs of employees working in the same department.
+SELECT 
+    E1.ENAME AS EMPLOYEE_1, 
+    E2.ENAME AS EMPLOYEE_2, 
+    E1.DEPTNO
+FROM EMP E1
+JOIN EMP E2 
+    ON E1.DEPTNO = E2.DEPTNO 
+    AND E1.EMPNO < E2.EMPNO
+ORDER BY E1.DEPTNO, E1.ENAME, E2.ENAME;
+
+
 
             
 
