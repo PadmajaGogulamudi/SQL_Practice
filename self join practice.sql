@@ -137,14 +137,44 @@ JOIN EMP E2
     ON E1.DEPTNO = E2.DEPTNO 
     AND E1.EMPNO < E2.EMPNO
 ORDER BY E1.DEPTNO, E1.ENAME, E2.ENAME;
+USE SAMPLEONE;
+#Display employees with the same hire date.
+SELECT 
+	E1.ENAME ,
+    E2.ENAME,
+    E1.HIREDATE,
+    E2.HIREDATE
+FROM EMP E1
+JOIN EMP E2
+	ON E1.HIREDATE=E2.HIREDATE
+    AND E1.EMPNO<E2.EMPNO
+;
+
+#Show employees who joined in the same month as someone else.
+SELECT
+	E1.ENAME ,
+    E2.ENAME,
+    MONTH(E1.HIREDATE),
+    
+    MONTH(E2.HIREDATE)
+FROM EMP E1
+JOIN EMP E2
+	ON MONTH(E1.HIREDATE)=MONTH(E2.HIREDATE)
+    WHERE E1.EMPNO<E2.EMPNO;
+
+#Display employees who share the same job and work under the same manager.
+SELECT
+	E1.ENAME,
+    E2.ENAME
+FROM EMP E1
+JOIN EMP E2 
+	ON E1.MGR=E2.MGR
+    AND E1.JOB=E2.JOB
+    AND E1.EMPNO<E2.EMPNO;
+    
 
 
-
-            
-
-
-
-
+#22. Find pairs of employees from different departments but with the same job.
 
 
 

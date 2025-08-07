@@ -84,3 +84,4 @@ select avg(salary) as avg_salary,job from employee group by job ;
 
 
 
+
