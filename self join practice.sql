@@ -175,6 +175,42 @@ JOIN EMP E2
 
 
 #22. Find pairs of employees from different departments but with the same job.
+SELECT 
+	E1.ENAME AS EMP1,
+    E2.ENAME AS EMP2
+FROM EMP E1
+JOIN EMP E2
+	ON E1.JOB=E2.JOB
+    AND E1.DEPTNO!=E2.DEPTNO
+	AND E1.EMPNO<E2.EMPNO
+   ;
 
+#Display employees who share a manager and were hired in the same year.
+SELECT
+	E1.ENAME AS EMP1,
+    E2.ENAME AS EMP2
+FROM EMP E1
+JOIN EMP E2
+	 ON E1.MGR=E2.MGR
+     AND E1.EMPNO<E2.EMPNO
+     AND YEAR(E1.HIREDATE) = YEAR(E2.HIREDATE);
 
+#Find employees who have the same salary as their manager.
+SELECT
+	E.ENAME AS EMPLOYEE
+FROM EMP E
+JOIN EMP M
+	ON E.MGR=M.EMPNO
+    WHERE E.SAL=M.SAL;
+SELECT * FROM EMP;
+#List employees whose job is same as another but earn less than them.
+SELECT
+	E1.ENAME AS EMP1,
+    E2.ENAME AS EMP2
+FROM EMP E1
+JOIN EMP E2
+	ON E1.JOB=E2.JOB
+    AND E1.EMPNO<E2.EMPNO
+WHERE E1.SAL>E2.SAL;
+select * from dept;
 

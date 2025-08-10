@@ -244,4 +244,10 @@ create table Number_status(
     );
 call Print_Even_Or_Odd(1,10);
 select * from number_status;
+select * from emp;
+
+
+ select GetAnnualSalary(7112) as anuual_Sal;
+
+
 
