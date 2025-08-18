@@ -103,3 +103,13 @@ SELECT
 FROM EMP
 GROUP BY JOB
 HAVING COUNT(*)>2 AND SUM(COALESCE(COMM, 0))>100;
+
+#List department names with total salary paid (join with DEPT).
+select d.dname,sum(e.sal) from dept d left join emp e  on e.deptno=d.deptno group by d.deptno; 
+
+#22. Show department location with count of employees (join with DEPT).
+select d.loc,count(e.ename) as no_of_employees from emp e right join dept d on e.deptno=d.deptno group by d.deptno;
+#23. List job titles in each department and count them.
+select e.deptno,e.job,count(*) from emp e join dept d on e.deptno=d.deptno group by e.deptno,e.job order by e.deptno;
+#24. Show total salary paid in each department by location.
+select d.deptno,d.loc,sum(e.sal) from emp e join dept d on e.deptno=d.deptno group by e.deptno;
