@@ -173,3 +173,4 @@ select deptno,sum(sal) from emp where job<>"SALESMAN" group by deptno;
 #40. Show average salary per department for employees earning more than 2000.
 select deptno,avg(sal) from emp where sal>2000 group by deptno;
 
+
