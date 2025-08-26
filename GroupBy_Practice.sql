@@ -173,4 +173,20 @@ select deptno,sum(sal) from emp where job<>"SALESMAN" group by deptno;
 #40. Show average salary per department for employees earning more than 2000.
 select deptno,avg(sal) from emp where sal>2000 group by deptno;
 
+#. List departments and total salary ordered by salary descending.
+select deptno ,sum(sal) as total_sal from emp group by deptno order by total_sal desc;
+
+#Show job-wise employee count ordered by count descending.
+select job,count(*) as count from emp group by job order by count desc ;
+# Show department-wise average salary ordered by department name.
+select d.dname ,avg(e.sal) as average from emp e join dept d on e.deptno=d.deptno group by e.deptno order by d.dname desc;
+#45. List departments where average salary is greater than overall average salary.
+select deptno from emp group by deptno having avg(sal)>(select avg(sal) from emp);
+#47. List jobs where minimum salary is greater than maximum salary of CLERKs.
+select job from emp group by job having min(sal)>(select max(sal) from emp where job="CLERK");
+
+
+
+
+
 
