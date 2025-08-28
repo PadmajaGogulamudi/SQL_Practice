@@ -5,7 +5,7 @@ dname varchar(20) not NULL,
 loc varchar(20) not NULL,
 primary key(deptno)
 );
-
+ drop table if exists emp;
 INSERT INTO dept VALUES ('10','ACCOUNTING','NEW YORK');
 
 INSERT INTO dept VALUES ('20','RESEARCH','DALLAS');
@@ -235,7 +235,7 @@ select @numOfEmp as no_of ,@maxSal,@avgSal;
  call Sum_Of_n_natural_nums(10);
  
 call Check_Even_or_Odd(30);
-
+ 
 drop table if exists Number_status;
 create table Number_status(
 	num int,
